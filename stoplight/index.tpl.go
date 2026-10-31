@@ -19,9 +19,13 @@ func IndexTpl(assetBase, faviconBase string, specCfg *config.SpecUI) string {
 	if cfg.Router == "" {
 		cfg.Router = config.ElementRouterHash
 	}
+	if cfg.TryItCredentialsPolicy == "" {
+		cfg.TryItCredentialsPolicy = config.ElementTryItCredentialsPolicyOmit
+	}
 	addSetting("router", string(cfg.Router))
 	addSetting("layout", string(cfg.Layout))
 	addSetting("logo", cfg.Logo)
+	addSetting("tryItCredentialsPolicy", string(cfg.TryItCredentialsPolicy))
 	if cfg.Router == config.ElementRouterHistory {
 		addSetting("basePath", specCfg.DocsPath)
 	}
@@ -84,6 +88,7 @@ func IndexTpl(assetBase, faviconBase string, specCfg *config.SpecUI) string {
             docs.hideTryItPanel = cfg.hideTryItPanel;
             docs.hideExport = cfg.hideExport;
             docs.hideSchemas = cfg.hideSchemas;
+            docs.tryItCredentialsPolicy = cfg.tryItCredentialsPolicy;
         })();
     }
 </script>
